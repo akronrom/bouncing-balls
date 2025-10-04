@@ -54,7 +54,6 @@ class BouncingBalls extends JPanel {
 			
 		b.run(g);
 		
-		System.out.println((Math.random() - .5));
 		frame.repaint();
 	
 	}
@@ -108,8 +107,8 @@ class Ball {
 	
 	int x, y;
 	
-	int addx = 1 + (int) (Math.random() * 15);
-	int addy = 1 - (int) (Math.random() * 15);
+	int addx = 1 + (int) (Math.random() * 10);
+	int addy = 1 - (int) (Math.random() * 10);
 
 	Ball(int x, int y) {
 		
@@ -128,13 +127,13 @@ class Ball {
 		
 		);
 		
-		if (x < SIZE/2 || x > WIDTH - SIZE) {
+		if (x < SIZE/2 || x > WIDTH - SIZE/2) {
 			
 			addx = -addx;
 			
 		}
 		
-		if (y < SIZE/2 || y > HEIGHT - SIZE) {
+		if (y < SIZE/2 || y > HEIGHT - SIZE/2) {
 			
 			addy = -addy;
 			
