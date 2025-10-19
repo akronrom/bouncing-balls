@@ -18,8 +18,8 @@ public class Main {
 
 class BouncingBalls extends JPanel {
 	
-	int WIDTH 	= 500;
-	int HEIGHT 	= 500;
+	int WIDTH 	= 1000;
+	int HEIGHT 	= 1000;
 	
 	JFrame frame;
 	
@@ -33,7 +33,7 @@ class BouncingBalls extends JPanel {
 		
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setResizable(false);
-		frame.setUndecorated(true);
+		frame.setUndecorated(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -42,7 +42,7 @@ class BouncingBalls extends JPanel {
 		frame.pack();
 	}
 	
-	public Balls b = new Balls(25, this);
+	Balls b = new Balls(10, this);
 	
 	public void paint(Graphics g) {
 		
@@ -76,13 +76,12 @@ class Balls {
 		
 		for (int i = 0; i < n; i++) {
 			
-			int randy = (int) ((Math.random() - .5) * 250);
-			int randx = (int) ((Math.random() - .5) * 250);
-			
+			int rand = (int) ((Math.random() - .5) * 250);
+		
 			balls.add(new Ball(
 			
-			(WIDTH	/	2) + randx,
-			(HEIGHT	/	2) + randy
+			(WIDTH	/	2) + rand,
+			(HEIGHT	/	2) + rand
 			
 			));
 			
@@ -102,8 +101,7 @@ class Balls {
 
 class Ball {
 	
-	final int SIZE = 50;
-	// + (int) (Math.random() * 100);
+	int SIZE = 5 + (int) (Math.random() * 80);
 	
 	int x, y;
 	
@@ -141,6 +139,7 @@ class Ball {
 		
 		x += addx;
 		y += addy;
+		//SIZE--;
 		
 		
 	}
@@ -162,6 +161,8 @@ class Vector2D {
 		
 	}
 	
+	// Vector2D: Addition and Subtraction
+	
 	void add(Vector2D v) {
 		
 		this.x += v.x;
@@ -176,6 +177,27 @@ class Vector2D {
 		
 	}
 	
+	// Vector2D: Magnitude, Vector Length
+	
+	double mag() {
+		
+        return Math.sqrt(
+		
+			x*x + y*y
+			
+		);
+		
+    }
+	
+	void normalize() {
+		double mag = mag();
+		if (mag != 0) {
+			x /= mag;
+			y /= mag;
+		}
+		
+	}
+	
 	void div(double d) {
 		
 		x /= d;
@@ -187,21 +209,6 @@ class Vector2D {
 		
 		x *= d;
 		y *= d;
-		
-	}
-	
-	double mag() {
-		
-        return Math.sqrt(x*x + y*y);
-		
-    }
-	
-	void normalize() {
-		double mag = mag();
-		if (mag != 0) {
-			x /= mag;
-			y /= mag;
-		}
 		
 	}
 	
